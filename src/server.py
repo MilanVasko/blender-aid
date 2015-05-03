@@ -155,6 +155,9 @@ class MyHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         file.close()
         template = Template(content)
         result = template.safe_substitute(session)
+        self.wfile.write('HTTP/1.0 200 OK\n')
+        self.wfile.write('Content-Type: text/html\n')
+        self.wfile.write('\n')
         self.wfile.write(result.encode())
         
         
